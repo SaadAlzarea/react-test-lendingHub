@@ -1,9 +1,10 @@
+import UserList from "../components/UserList"
 
 function AdminHome() {
   return (
     <div>
         <div>
-            AdminHome
+            <UserList />
         </div>
     </div>
   )
