@@ -1,13 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
 function UserList() {
   const api_url = "https://jsonplaceholder.typicode.com";
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading } = useQuery<User[]>({
     queryKey: ["admin"],
     queryFn: async () => {
-      const res = await axios.get(`${api_url}/users`);
+      const res = await axios.get<User[]>(`${api_url}/users`);
       return res.data;
     },
   });
@@ -17,7 +23,7 @@ function UserList() {
   return (
     <div>
       {data?.map((i) => (
-        <div className="flex gap-4" key={i.id}>
+        <div className="flex gap-4" key={i.email}>
           <p>{i.name}</p>
           <p>{i.email}</p>
         </div>
@@ -27,4 +33,3 @@ function UserList() {
 }
 
 export default UserList;
-

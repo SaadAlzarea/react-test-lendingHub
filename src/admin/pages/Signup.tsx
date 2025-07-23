@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 // import { useQuery, useQueryClient } from "@tanstack/react-query";
 // import { data } from "react-router-dom";
@@ -103,11 +103,11 @@ function Signup() {
       }
     };
 
-    const postUser = async (userInfo: UserInfo): Promise<void> => {
+    const postUser = async (): Promise<void> => {
       try {
-        const exists = await isExists(userInfo.email); // تحقق أولًا من الإيميل
+        const exists = await isExists(userInfo.email); 
 
-        if (exists) return; // لا تسجل المستخدم إذا موجود
+        if (exists) return; 
 
         const response = await axios.post(`${api_url}/adminUser`, userInfo);
         console.log("User created:", response.data);
