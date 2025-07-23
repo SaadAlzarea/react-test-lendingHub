@@ -4,5 +4,9 @@ router,
 axios,
 react icon,
 react toast alert,
-React Query
+React Query,
+react-hook-form,
+zod,
+hookform resolvers,
+
 }
