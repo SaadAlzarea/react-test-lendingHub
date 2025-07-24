@@ -4,6 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // import { data } from "react-router-dom";
 import z from "zod";
 import axios from "axios";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
 function Signup() {
   const api_url = "https://68219a2d259dad2655afc2ba.mockapi.io/";
@@ -117,75 +120,87 @@ function Signup() {
     };
   };
   return (
-    <div className="flex flex-col min-h-screen max-w-screen justify-center items-center">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col shadow-2xl  rounded-lg gap-4 w-100 border border-gray-600/20 px-3">
-          <p className="text-center font-bold text-2xl my-3">Admin Signup</p>
-          <input
-            className="focus:outline-0 px-1 border border-gray-600/50 rounded-sm"
-            type="text"
-            placeholder="Enter your first name"
-            {...register("firstName", { required: true })}
-          />
-          {errors.firstName && (
-            <span className="text-red-800 text-sm ">
-              {errors.firstName.message}
-            </span>
-          )}
-          <input
-            className="focus:outline-0 px-1 border border-gray-600/50 rounded-sm"
-            type="text"
-            placeholder="Enter your last name"
-            {...register("lastName", { required: true })}
-          />
-          {errors.lastName && (
-            <span className="text-red-800 text-sm ">
-              {errors.lastName.message}
-            </span>
-          )}
-          <input
-            className="focus:outline-0 px-1 border border-gray-600/50 rounded-sm"
-            type="email"
-            placeholder="Enter your email"
-            {...register("email", { required: true })}
-          />
-          {errors.email && (
-            <span className="text-red-800 text-sm ">
-              {errors.email.message}
-            </span>
-          )}
-          <input
-            className="focus:outline-0 px-1 border border-gray-600/50 rounded-sm"
-            type="password"
-            placeholder="Enter your password"
-            {...register("password", { required: true })}
-          />
-          {errors.password && (
-            <span className="text-red-800 text-sm ">
-              {errors.password.message}
-            </span>
-          )}
-          <input
-            className="focus:outline-0 px-1 border border-gray-600/50 rounded-sm"
-            type="password"
-            placeholder="Enter your confirm password"
-            {...register("confirmPassword", { required: true })}
-          />
-          {errors.confirmPassword && (
-            <span className="text-red-800 text-sm ">
-              {errors.confirmPassword.message}
-            </span>
-          )}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="text-sm font-medium bg-blue-700 rounded-sm text-white p-1 my-2"
-          >
-            SignUp
-          </button>
-        </div>
-      </form>
+<div className="flex flex-col min-h-screen max-w-screen justify-center items-center">
+  <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="flex flex-col shadow-2xl rounded-lg gap-4 w-[320px] sm:w-[400px] border border-gray-600/20 px-4 py-6">
+      <p className="text-center font-bold text-2xl mb-2">Admin Signup</p>
+
+      {/* First Name */}
+      <div className="flex flex-col gap-1">
+        <Label htmlFor="firstName">First Name</Label>
+        <Input
+          id="firstName"
+          type="text"
+          placeholder="Enter your first name"
+          {...register("firstName", { required: true })}
+        />
+        {errors.firstName && (
+          <span className="text-red-800 text-sm">{errors.firstName.message}</span>
+        )}
+      </div>
+
+      {/* Last Name */}
+      <div className="flex flex-col gap-1">
+        <Label htmlFor="lastName">Last Name</Label>
+        <Input
+          id="lastName"
+          type="text"
+          placeholder="Enter your last name"
+          {...register("lastName", { required: true })}
+        />
+        {errors.lastName && (
+          <span className="text-red-800 text-sm">{errors.lastName.message}</span>
+        )}
+      </div>
+
+      {/* Email */}
+      <div className="flex flex-col gap-1">
+        <Label htmlFor="email">Email</Label>
+        <Input
+          id="email"
+          type="email"
+          placeholder="Enter your email"
+          {...register("email", { required: true })}
+        />
+        {errors.email && (
+          <span className="text-red-800 text-sm">{errors.email.message}</span>
+        )}
+      </div>
+
+      {/* Password */}
+      <div className="flex flex-col gap-1">
+        <Label htmlFor="password">Password</Label>
+        <Input
+          id="password"
+          type="password"
+          placeholder="Enter your password"
+          {...register("password", { required: true })}
+        />
+        {errors.password && (
+          <span className="text-red-800 text-sm">{errors.password.message}</span>
+        )}
+      </div>
+
+      {/* Confirm Password */}
+      <div className="flex flex-col gap-1">
+        <Label htmlFor="confirmPassword">Confirm Password</Label>
+        <Input
+          id="confirmPassword"
+          type="password"
+          placeholder="Enter your confirm password"
+          {...register("confirmPassword", { required: true })}
+        />
+        {errors.confirmPassword && (
+          <span className="text-red-800 text-sm">{errors.confirmPassword.message}</span>
+        )}
+      </div>
+
+      <Button type="submit" disabled={isSubmitting} className="w-full mt-2">
+        Sign Up
+      </Button>
     </div>
+  </form>
+</div>
   );
 }
 

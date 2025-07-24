@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import axios from "axios";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 
 function Signin() {
   const api_url = "https://68219a2d259dad2655afc2ba.mockapi.io/";
@@ -54,36 +57,42 @@ function Signin() {
   return (
     <div className="flex flex-col min-h-screen max-w-screen justify-center items-center">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col shadow-2xl rounded-lg gap-4 w-100 border border-gray-600/20 px-3">
-          <p className="text-center font-bold text-2xl my-3">Admin Signin</p>
+        <div className="flex flex-col shadow-2xl rounded-lg gap-4 w-[320px] sm:w-[400px] border border-gray-600/20 px-4 py-6">
+          <p className="text-center font-bold text-2xl">Admin Signin</p>
 
-          <input
-            className="focus:outline-0 px-1 border border-gray-600/50 rounded-sm"
-            type="email"
-            placeholder="Enter your email"
-            {...register("email", { required: true })}
-          />
-          {errors.email && (
-            <span className="text-red-800 text-sm">{errors.email.message}</span>
-          )}
+          <div className="flex flex-col gap-1">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              {...register("email", { required: true })}
+            />
+            {errors.email && (
+              <span className="text-red-800 text-sm">
+                {errors.email.message}
+              </span>
+            )}
+          </div>
 
-          <input
-            className="focus:outline-0 px-1 border border-gray-600/50 rounded-sm"
-            type="password"
-            placeholder="Enter your password"
-            {...register("password", { required: true })}
-          />
-          {errors.password && (
-            <span className="text-red-800 text-sm">{errors.password.message}</span>
-          )}
+          <div className="flex flex-col gap-1">
+            <Label htmlFor="password">Password</Label>
+            <Input
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+              {...register("password", { required: true })}
+            />
+            {errors.password && (
+              <span className="text-red-800 text-sm">
+                {errors.password.message}
+              </span>
+            )}
+          </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="text-sm font-medium bg-blue-700 rounded-sm text-white p-1 my-2"
-          >
+          <Button type="submit" disabled={isSubmitting} className="w-full mt-2">
             Sign In
-          </button>
+          </Button>
         </div>
       </form>
     </div>
