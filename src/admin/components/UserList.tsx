@@ -33,7 +33,7 @@ function UserList() {
       <p className="text-xl font-bold mb-4">User Info</p>
       <Table>
         <TableHeader>
-          <TableRow>  
+          <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Email</TableHead>
             <TableHead>Phone</TableHead>
